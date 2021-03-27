@@ -1,0 +1,38 @@
+{"FoodBanks": [
+  {
+    "FoodList": {"Items": [{
+      "FatPerServing": 13,
+      "FoodTypes": "MEAT GRAIN",
+      "CaloriesPerServing": 350,
+      "ExpirationDate": "Wed Mar 27 00:00:00 EST 121",
+      "CholesterolPerServing": 20,
+      "CarbsPerServing": 48,
+      "ServingsPerContainer": 1,
+      "Quantity": 45,
+      "Name": "Beefaroni"
+    }]},
+    "Name": "Blue Ridge Area Food Bank",
+    "Location": {
+      "Lon": -78.48094,
+      "Lat": 38.03969
+    }
+  },
+  {
+    "FoodList": {"Items": [{
+      "FatPerServing": 0,
+      "FoodTypes": "NONE",
+      "CaloriesPerServing": 20,
+      "ExpirationDate": "Wed Mar 27 00:00:00 EST 121",
+      "CholesterolPerServing": 0,
+      "CarbsPerServing": 2,
+      "ServingsPerContainer": 1,
+      "Quantity": 28,
+      "Name": "Swanson Chicken Broth"
+    }]},
+    "Name": "Loaves & Fishes Food Pantry",
+    "Location": {
+      "Lon": -78.50049,
+      "Lat": 38.07794
+    }
+  }
+]}

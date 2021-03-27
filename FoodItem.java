@@ -2,6 +2,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,7 +17,7 @@ public class FoodItem implements Serializable, Comparable{
     protected int fatPerServing = 0;
     protected int cholesterolPerServing = 0;
     protected int carbsPerServing = 0;
-    protected Date expirationDate = new Date(2021, 2, 27);
+    protected Date expirationDate = new GregorianCalendar(121, 2, 27).getTime();
     protected int servingsPerContainer = 0;
 
     /**

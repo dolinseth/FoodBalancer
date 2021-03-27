@@ -31,7 +31,7 @@ public class FoodBankList implements Serializable{
     }
 
     public void importFromJSON(JSONObject root){
-        JSONArray banks = root.getJSONArray("banks");
+        JSONArray banks = root.getJSONArray("FoodBanks");
         banks.forEach(obj -> {
             foodBanks.add(new FoodBank((JSONObject)obj));
         });
@@ -41,8 +41,14 @@ public class FoodBankList implements Serializable{
         foodBanks.add(fb);
     }
 
-    public void getFoodBank(String name){
-        foodBanks.get(foodBanks.indexOf(new FoodBank(name)));
+    public FoodBank getFoodBank(String name){
+        int ind = foodBanks.indexOf(new FoodBank(name));
+        if(ind != -1){
+            return foodBanks.get(ind);
+        }
+        else{
+            return null;
+        }
     }
 
     /*
