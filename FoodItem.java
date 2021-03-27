@@ -1,19 +1,23 @@
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class FoodItem implements Serializable, Comparable{
-    protected String name;
-    protected int quantity;
-    protected int caloriesPerServing;
-    protected int fatPerServing;
-    protected int cholesterolPerServing;
-    protected int carbsPerServing;
-    protected Date expirationDate;
-    protected int servingsPerContainer;
+    protected enum FoodType {FATS_OILS_SWEETS, DAIRY, MEAT, VEGETABLE, FRUIT, GRAIN, NONE};
+    protected ArrayList<FoodType> foodTypes = new ArrayList<FoodType>();
+    protected String name = "";
+    protected int quantity = 0;
+    protected int caloriesPerServing = 0;
+    protected int fatPerServing = 0;
+    protected int cholesterolPerServing = 0;
+    protected int carbsPerServing = 0;
+    protected Date expirationDate = new Date(2021, 2, 27);
+    protected int servingsPerContainer = 0;
 
     /**
      * default constructor
@@ -51,7 +55,7 @@ public class FoodItem implements Serializable, Comparable{
             System.out.println("Error parsing date for FoodItem with name " + name + ". Date string provided was \"" + root.getString("ExpirationDate") + "\"");
         }
         servingsPerContainer = root.getInt("ServingsPerContainer");
-
+        foodTypes = getFoodTypesFromString(root.getString("FoodTypes"));
     }
 
     /**
@@ -68,8 +72,60 @@ public class FoodItem implements Serializable, Comparable{
         root.put("CarbsPerServing", carbsPerServing);
         root.put("ExpirationDate", expirationDate.toString());
         root.put("ServingsPerContainer", servingsPerContainer);
+        root.put("FoodTypes", getFoodTypesString());
 
         return root;
+    }
+
+    private String getFoodTypesString(){
+        String ret = "";
+        for(int i = 0; i < foodTypes.size(); i++){
+            ret += foodTypes.get(i).toString();
+            if(i != foodTypes.size() - 1){
+                ret += " ";
+            }
+        }
+
+        return ret;
+    }
+
+    private ArrayList<FoodType> getFoodTypesFromString(String ftString){
+        ArrayList<FoodType> fts = new ArrayList<FoodType>();
+        String[] ftSplit = ftString.split(" ");
+        for(int i = 0; i < ftSplit.length; i++){
+            fts.add(foodTypeStrToEnum(ftSplit[i]));
+        }
+
+        return fts;
+    }
+
+    private FoodType foodTypeStrToEnum(String foodTypeString){
+        FoodType result;
+        switch(foodTypeString){
+            case "FATS_OILS_SWEETS":
+                result = FoodType.FATS_OILS_SWEETS; 
+                break;
+            case "DAIRY":
+                result = FoodType.DAIRY;
+                break;
+            case "MEAT":
+                result = FoodType.MEAT;
+                break;
+            case "VEGETABLE":
+                result = FoodType.VEGETABLE;
+                break;
+            case "FRUIT":
+                result = FoodType.FRUIT;
+                break;
+            case "GRAIN":
+                result = FoodType.GRAIN;
+                break;
+            default:
+                result = FoodType.NONE;
+                break;
+        }
+
+        return result;
     }
 
     /**
@@ -117,6 +173,16 @@ public class FoodItem implements Serializable, Comparable{
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public ArrayList<FoodType> getFoodTypes(){
+        return foodTypes;
+    }
+
+    public void addFoodType(FoodType ft){
+        if(!foodTypes.contains(ft)){
+            foodTypes.add(ft);
+        }
     }
 
     public int getQuantity(){

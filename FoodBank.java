@@ -1,8 +1,8 @@
 import org.json.JSONObject;
 
-public class FoodBank implements Serializable {
+public class FoodBank implements Serializable, Comparable {
     protected String name;
-    protected FoodList foodList;
+    protected FoodList foodList = new FoodList();
     protected Coordinate location;
 
     /**
@@ -36,6 +36,21 @@ public class FoodBank implements Serializable {
         return root;
     }
 
+    @Override
+    public int compareTo(Object obj){
+        if(obj instanceof FoodBank){
+            FoodBank fb = (FoodBank)obj;
+            if(fb.getName().compareTo(name) == 0){
+                return 0;
+            }
+            else{
+                return 1;
+            }
+        }
+        else{
+            return -1;
+        }
+    }
 
     /*
     GETTERS AND SETTERS
