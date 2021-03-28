@@ -21,12 +21,21 @@ public class FoodBank implements Serializable, Comparable {
         importFromJSON(root);
     }
 
+    /**
+     * imports the properties of the object from JSON
+     * required by Serialization interface
+     * @param root - the JSONObject to import the properties from
+     */
     public void importFromJSON(JSONObject root){
         name = root.getString("Name");
         location = new Coordinate(root.getJSONObject("Location"));
         foodList = new FoodList(root.getJSONObject("FoodList"));
     }
 
+    /**
+     * converts the object to a JSONObject for data persistence
+     * required by Serialization interface
+     */
     public JSONObject toJSON(){
         JSONObject root = new JSONObject();
         root.put("Name", name);
@@ -36,6 +45,9 @@ public class FoodBank implements Serializable, Comparable {
         return root;
     }
 
+    /**
+     * overridden compareTo method, to allow List.contains() to work properly
+     */
     @Override
     public int compareTo(Object obj){
         if(obj instanceof FoodBank){

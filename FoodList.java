@@ -11,7 +11,7 @@ public class FoodList implements Serializable {
      * default constructor
      */
     public FoodList(){
-        //default constructor, nothing here yet
+        //default constructor, nothing here
     }
 
     /**
@@ -36,6 +36,11 @@ public class FoodList implements Serializable {
         }
     }
 
+    /**
+     * update the quantity of the specified food item in the FoodList
+     * @param fi - the FoodItem to search the list for and update the quantity of
+     * @param quantityChange - the change in quantity of this item (positive for increase, negative for decrease)
+     */
     public void updateQuantity(FoodItem fi, int quantityChange){
         if(foodItems.contains(fi)){
             foodItems.get(foodItems.indexOf(fi)).updateQuantity(quantityChange);
@@ -45,6 +50,10 @@ public class FoodList implements Serializable {
         }
     }
 
+    /**
+     * converts the FoodList to a JSONObject
+     * required by serialization interface
+     */
     public JSONObject toJSON(){
         JSONObject root = new JSONObject();
         JSONArray items = new JSONArray();
@@ -57,6 +66,11 @@ public class FoodList implements Serializable {
         return root;
     }
 
+    /**
+     * imports the properties of this FoodList from the JSON object
+     * required by serialization interface
+     * @param root - the JSONObject containing the properties to be imported
+     */
     public void importFromJSON(JSONObject root){
         JSONArray items = root.getJSONArray("Items");
         items.forEach(obj -> {
@@ -73,6 +87,10 @@ public class FoodList implements Serializable {
         return foodItems;
     }
 
+    /**
+     * calculates the total calories in the entire food list
+     * @return - the total number of calories
+     */
     public int getTotalCalories(){
         AtomicInteger calories = new AtomicInteger(0);
         foodItems.stream().forEach(fi -> {
@@ -82,6 +100,10 @@ public class FoodList implements Serializable {
         return calories.get();
     }
     
+    /**
+     * calculates the total quantity of fat in the entire food list
+     * @return - the total quantity of fat, in grams
+     */
     public int getTotalFat(){
         AtomicInteger fat = new AtomicInteger(0);
         foodItems.forEach(fi -> {
@@ -91,6 +113,10 @@ public class FoodList implements Serializable {
         return fat.get();
     }
 
+    /**
+     * calculates the total quantity of cholesterol in the entire food list
+     * @return - the total quantity of cholesterol, in milligrams
+     */
     public int getTotalCholesterol(){
         AtomicInteger cholesterol = new AtomicInteger(0);
         foodItems.forEach(fi -> {
@@ -100,6 +126,10 @@ public class FoodList implements Serializable {
         return cholesterol.get();
     }
 
+    /**
+     * calculates the total quantity of carbs in the entire food list
+     * @return - the total quantity of carbs, in grams
+     */
     public int getTotalCarbs(){
         AtomicInteger carbs = new AtomicInteger(0);
         foodItems.forEach(fi -> {
