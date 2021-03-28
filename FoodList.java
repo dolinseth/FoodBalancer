@@ -87,7 +87,7 @@ public class FoodList implements Serializable {
         HashMap<String, Integer> foods = new HashMap<String, Integer>();
         foodItems.forEach(fi -> {
             for(String foodType : fi.getFoodTypesString().split(" ")){
-                if(!foods.containsKey(foodType){
+                if(!foods.containsKey(foodType)){
                     foods.put(foodType, 0);
                 }
                 foods.put(foodType, foods.get(foodType) + fi.getTotalCalories());
