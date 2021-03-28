@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,6 +14,8 @@ public class InventoryScreen extends Screen{
     private Label totalCaloriesLabel;
     @FXML
     private Label numPeopleSupportableLabel;
+    @FXML
+    private Label foodGroupCaloriesLabel;
 
     //non-FXML fields
     AppController appController;
@@ -29,6 +33,11 @@ public class InventoryScreen extends Screen{
         String tcText = String.format("Total calories in your inventory: %d\nTotal carbs in your inventory %d\nTotal fat in your inventory: %d", totalCalories, totalCarbs, totalFat);
         totalCaloriesLabel.setText(tcText);
         numPeopleSupportableLabel.setText("Total number of people-days worth of calories available in your inventory: " + numPeopleSupportable);
+
+        HashMap<String, Integer> fgc = fb.getFoodList().getFoodGroupCalories();
+        String fgcText = String.format("Total calories in Fats, Oils, & Sweets: %d\nTotal calories in Dairy: %d\nTotal calories in Meat: %d\nTotal calories in Vegetables: %d\nTotal calories in Fruits: %d\nTotal calories in Grain: %d\nTotal uncategorized calories: %d", 
+                                        fgc.get("FATS_OILS_SWEETS"), fgc.get("DAIRY"), fgc.get("MEAT"), fgc.get("VEGETABLE"), fgc.get("FRUIT"), fgc.get("GRAIN"), fgc.get("NONE"));
+        foodGroupCaloriesLabel.setText(fgcText);
     }
 
     //FXML defined button handlers
