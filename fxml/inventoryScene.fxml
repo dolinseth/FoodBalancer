@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -29,5 +30,15 @@
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
       </Button>
+      <Label id="totalCaloriesDisplayerLabel" layoutX="95.0" layoutY="238.0" prefHeight="109.0" prefWidth="177.0" text="Label">
+         <font>
+            <Font name="Times New Roman Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label id="numOfPeopleSupportedLabel" layoutX="307.0" layoutY="238.0" prefHeight="109.0" prefWidth="263.0" text="Label">
+         <font>
+            <Font name="Times New Roman Bold" size="25.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
