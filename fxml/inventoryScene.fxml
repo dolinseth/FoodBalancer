@@ -10,32 +10,32 @@
 <Pane id="InventoryPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="263.0" layoutY="29.0" text="Inventory" />
-      <Button id="addItemToInventoryButton" layoutX="151.0" layoutY="144.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="98.0" text="Add Item" textAlignment="CENTER" wrapText="true">
+      <Button id="addItemToInventoryButton" fx:id="addItemToInventoryButton" layoutX="151.0" layoutY="144.0" mnemonicParsing="false" onAction="#AddItemHandler" prefHeight="73.0" prefWidth="98.0" text="Add Item" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
       </Button>
-      <Button id="updateQuantitiesInInventoryButton" layoutX="327.0" layoutY="144.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="137.0" text="Update Quantities" textAlignment="CENTER" wrapText="true">
+      <Button id="updateQuantitiesInInventoryButton" fx:id="updateQuantitiesInInventoryButton" layoutX="327.0" layoutY="144.0" mnemonicParsing="false" onAction="#UpdateQuantitiesHandler" prefHeight="73.0" prefWidth="137.0" text="Update Quantities" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
       </Button>
-      <Button id="TotalCaloriesInInventoryButton" layoutX="118.0" layoutY="256.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="131.0" text="Total Calories" textAlignment="CENTER" wrapText="true">
+      <Button id="TotalCaloriesInInventoryButton" fx:id="TotalCaloriesInInventoryButton" layoutX="118.0" layoutY="256.0" mnemonicParsing="false" onAction="#TotalCaloriesHandler" prefHeight="73.0" prefWidth="131.0" text="Total Calories" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
       </Button>
-      <Button id="NumberOfPeopleSupportedButtonInInventory" layoutX="327.0" layoutY="256.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="222.0" text="Number of People Supported" textAlignment="CENTER" wrapText="true">
+      <Button id="NumberOfPeopleSupportedButtonInInventory" fx:id="NumberOfPeopleSupportedButtonInInventory" layoutX="327.0" layoutY="256.0" mnemonicParsing="false" onAction="#NumberOfPeopleSupportedHandler" prefHeight="73.0" prefWidth="222.0" text="Number of People Supported" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
       </Button>
-      <Label id="totalCaloriesDisplayerLabel" layoutX="95.0" layoutY="238.0" prefHeight="109.0" prefWidth="177.0" text="Label">
+      <Label id="totalCaloriesDisplayerLabel" layoutX="95.0" layoutY="238.0" prefHeight="109.0" prefWidth="177.0" text="Label" textAlignment="CENTER">
          <font>
             <Font name="Times New Roman Bold" size="25.0" />
          </font>
       </Label>
-      <Label id="numOfPeopleSupportedLabel" layoutX="307.0" layoutY="238.0" prefHeight="109.0" prefWidth="263.0" text="Label">
+      <Label id="numOfPeopleSupportedLabel" layoutX="307.0" layoutY="238.0" prefHeight="109.0" prefWidth="263.0" text="Label" textAlignment="CENTER">
          <font>
             <Font name="Times New Roman Bold" size="25.0" />
          </font>
