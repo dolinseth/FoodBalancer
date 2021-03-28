@@ -153,6 +153,7 @@ public class FoodBalancer extends Application{
                 fbl.applyFoodTransportSuggestion(fts);
             }
         });
+
         return suggestions;
     }
 }
