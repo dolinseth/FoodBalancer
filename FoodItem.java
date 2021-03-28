@@ -28,13 +28,6 @@ public class FoodItem implements Serializable, Comparable{
     }
 
     /**
-     * empty constructor for use with importFromJSON();
-     */
-    public FoodItem(){
-
-    }
-
-    /**
      * alternate constructor that takes in a JSONObject to import the FoodItem from a JSON file
      * @param root - the JSONObject representing this FoodItem
      */
@@ -42,6 +35,11 @@ public class FoodItem implements Serializable, Comparable{
         importFromJSON(root);
     }
 
+    /**
+     * imports the properties of this food item from a JSONObject
+     * required by Serialization interface
+     * @param root - the JSONObject to import the properties from
+     */
     public void importFromJSON(JSONObject root){
         name = root.getString("Name");
         quantity = root.getInt("Quantity");
@@ -78,6 +76,10 @@ public class FoodItem implements Serializable, Comparable{
         return root;
     }
 
+    /**
+     * helper function to convert the food types that apply to this FoodItem to a space separated string for JSON exporting
+     * @return - the space separated string containing the food types
+     */
     private String getFoodTypesString(){
         String ret = "";
         for(int i = 0; i < foodTypes.size(); i++){
@@ -90,6 +92,11 @@ public class FoodItem implements Serializable, Comparable{
         return ret;
     }
 
+    /**
+     * helper function that converts a space separated string of food types (created by getFoodTypesString()) to an ArrayList of FoodTypes to be imported
+     * @param ftString - the space separated string of food types to add to the list
+     * @return - an ArrayList<FoodType> containing each of the FoodTypes specified in the input string
+     */
     private ArrayList<FoodType> getFoodTypesFromString(String ftString){
         ArrayList<FoodType> fts = new ArrayList<FoodType>();
         String[] ftSplit = ftString.split(" ");
@@ -100,6 +107,11 @@ public class FoodItem implements Serializable, Comparable{
         return fts;
     }
 
+    /**
+     * helper function that converts a string containing a single food type into the FoodType enumerated type representing that food type
+     * @param foodTypeString - the string containing a single food type
+     * @return - the enumerated type representation of the input string
+     */
     private FoodType foodTypeStrToEnum(String foodTypeString){
         FoodType result;
         switch(foodTypeString){

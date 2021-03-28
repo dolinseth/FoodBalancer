@@ -13,10 +13,18 @@ public class FoodBankList implements Serializable{
 
     }
 
+    /**
+     * alternate constructor, imports the properties of this object from the provided JSONObject
+     * @param root - the JSONObject containing the properties of this FoodBankList
+     */
     public FoodBankList(JSONObject root){
         importFromJSON(root);
     }
 
+    /**
+     * converts this object to a JSONObject containing all its properties
+     * required by Serialization interface
+     */
     public JSONObject toJSON(){
         JSONObject root = new JSONObject();
         JSONArray banks = new JSONArray();
@@ -30,6 +38,11 @@ public class FoodBankList implements Serializable{
         return root;
     }
 
+    /**
+     * imports the properties of this FoodBankList from the provided JSONObject
+     * required by Serialization interface
+     * @param root - the JSONObject to import the properties from
+     */
     public void importFromJSON(JSONObject root){
         JSONArray banks = root.getJSONArray("FoodBanks");
         banks.forEach(obj -> {
@@ -37,10 +50,19 @@ public class FoodBankList implements Serializable{
         });
     }
 
+    /**
+     * add a food bank to this FoodBankList
+     * @param fb - the FoodBank to add to the list
+     */
     public void addFoodBank(FoodBank fb){
         foodBanks.add(fb);
     }
 
+    /**
+     * gets a reference to the FoodBank object with the specified name
+     * @param name - the name of the food bank to retrieve the reference to
+     * @return - the retrieved reference to the specified FoodBank object
+     */
     public FoodBank getFoodBank(String name){
         int ind = foodBanks.indexOf(new FoodBank(name));
         if(ind != -1){
