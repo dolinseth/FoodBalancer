@@ -19,6 +19,8 @@ public class FoodBalancer extends Application{
         // fb1.setLocation(new Coordinate(38.039690, -78.480940));
         // fb2.setLocation(new Coordinate(38.077940, -78.500490));
 
+        // System.out.println("Distance between fb1 and fb2 is " + fb1.getLocation().getDistanceTo(fb2.getLocation()));
+
         // FoodItem beefaroni = new FoodItem("Beefaroni");
         // beefaroni.setCaloriesPerServing(350);
         // beefaroni.setCarbsPerServing(48);
@@ -53,7 +55,6 @@ public class FoodBalancer extends Application{
         //     System.out.println("Imported food bank with name: " + fb.getName());
         // });
     }
-
 
     /**
      * start is the function that JavaFX calls to initialize the application, it is called by the hidden launch(args) method that is called by main
