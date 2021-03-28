@@ -78,10 +78,15 @@ public class FoodBalancer extends Application{
         Parent whoAmIScreenRoot = null;
         FXMLLoader whoAmIScreenLoader = new FXMLLoader(this.getClass().getResource("fxml/whoAreYouScene.fxml"));
         WhoAmIScreen whoAmIScreen = null;
+        Parent InventoryScreenRoot = null;
+        FXMLLoader inventoryScreenLoader = new FXMLLoader(this.getClass().getResource("fxml/inventoryScene.fxml"));
+        InventoryScreen inventoryScreen = null;
 
         try{                
             whoAmIScreenRoot = whoAmIScreenLoader.load();
             whoAmIScreen = whoAmIScreenLoader.getController();
+            inventoryScreenRoot = inventoryScreenLoader.load();
+            inventoryScreen = inventoryScreenLoader.getController();
         }
         catch(IOException e){
             System.out.println(e.getMessage());
@@ -94,11 +99,14 @@ public class FoodBalancer extends Application{
 
         //create scenes for each screen
         Scene whoAmIScreenScene = new Scene(whoAmIScreenRoot);
+        Scene inventoryScreenScene = new Scene(InventoryScreenRoot);
 
 
         //give AppController references to scenes and objects
         appController.setWhoAmIScreen(whoAmIScreen);
         appController.setWhoAmIScreenScene(whoAmIScreenScene);
+        appController.setInventoryScreen(inventoryScreen);
+        appController.setInventoryScreenScene(inventoryScreenScene);
 
         //set stage's current scene to the WhoAmIScreenScene cause that's the default
         stage.setScene(whoAmIScreenScene);

@@ -6,25 +6,24 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <Pane id="whoAreYouMainScenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button id="iAmADonorButton" fx:id="iAmADonorButton" layoutX="39.0" layoutY="314.0" mnemonicParsing="false" onAction="#DonorHandler" text="Donor" textAlignment="CENTER">
+      <Button id="iAmADonorButton" fx:id="iAmADonorButton" layoutX="39.0" layoutY="314.0" mnemonicParsing="false" onAction="#donorHandler" text="Donor" textAlignment="CENTER">
          <font>
             <Font name="Times New Roman Bold" size="25.0" />
          </font>
       </Button>
-      <Button id="iAmAManagerButton" fx:id="iAmAManagerButton" layoutX="168.0" layoutY="314.0" mnemonicParsing="false" onAction="#ManagerHandler" text="Manager" textAlignment="CENTER">
+      <Button id="iAmAManagerButton" fx:id="iAmAManagerButton" layoutX="168.0" layoutY="314.0" mnemonicParsing="false" onAction="#managerHandler" text="Manager" textAlignment="CENTER">
          <font>
             <Font name="Times New Roman Bold" size="25.0" />
          </font>
       </Button>
-      <Button id="iAmAFoodPantryButton" fx:id="iAmAFoodPantryButton" layoutX="328.0" layoutY="314.0" mnemonicParsing="false" onAction="#PantryHandler" text="Pantry" textAlignment="CENTER">
+      <Button id="iAmAFoodPantryButton" fx:id="iAmAFoodPantryButton" layoutX="328.0" layoutY="314.0" mnemonicParsing="false" onAction="#pantryHandler" text="Pantry" textAlignment="CENTER">
          <font>
             <Font name="Times New Roman Bold" size="25.0" />
          </font>
       </Button>
-      <Button id="iAmAClientButton" fx:id="iAmAClientButton" layoutX="465.0" layoutY="314.0" mnemonicParsing="false" onAction="#ClientHandler" text="Client" textAlignment="CENTER">
+      <Button id="iAmAClientButton" fx:id="iAmAClientButton" layoutX="465.0" layoutY="314.0" mnemonicParsing="false" onAction="#clientHandler" text="Client" textAlignment="CENTER">
          <font>
             <Font name="Times New Roman Bold" size="25.0" />
          </font>

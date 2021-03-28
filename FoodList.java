@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.json.JSONArray;
@@ -76,6 +77,24 @@ public class FoodList implements Serializable {
         items.forEach(obj -> {
             foodItems.add(new FoodItem((JSONObject)obj));
         });
+    }
+
+    /**
+     * gets the total calorie count for each food group in the food list
+     * @return - a hashmap of strings (food group names) to integers (# of calories available of the given food group)
+     */
+    public HashMap<String, Integer> getFoodGroupCalories(){
+        HashMap<String, Integer> foods = new HashMap<String, Integer>();
+        foodItems.forEach(fi -> {
+            for(String foodType : fi.getFoodTypesString().split(" ")){
+                if(!foods.containsKey(foodType){
+                    foods.put(foodType, 0);
+                }
+                foods.put(foodType, foods.get(foodType) + fi.getTotalCalories());
+            }
+        });
+
+        return foods;
     }
 
 

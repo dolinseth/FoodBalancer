@@ -4,6 +4,13 @@
 public class Screen {
     private AppController appController;
 
+    /**
+     * setup function to be run before scene is switched to the given screen, to be overridden by inheriting classes
+     */
+    public void setup(){
+
+    }
+
     /*
     GETTERS AND SETTERS
     */

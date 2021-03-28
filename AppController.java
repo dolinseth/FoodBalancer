@@ -6,6 +6,9 @@ public class AppController {
     private Stage stage;
     private WhoAmIScreen whoAmIScreen;
     private Scene whoAmIScreenScene;
+    private InventoryScreen InventoryScreen;
+    private Scene inventoryScreenScene;
+    private FoodBank currentFoodBank;
     //entries for each screen object type and their associated scenes would go here
 
     /**
@@ -32,6 +35,13 @@ public class AppController {
         stage.setScene(whoAmIScreenScene);
     }
 
+    /**
+     * Sets the scene to the InventoryScreen
+     */
+    public void setSceneToInventoryScreen(){
+        stage.setScene(inventoryScreenScene);
+    }
+
 
     /*
     GETTERS AND SETTERS
@@ -51,5 +61,17 @@ public class AppController {
 
     public void setWhoAmIScreen(WhoAmIScreen wais){
         whoAmIScreen = wais;
+    }
+
+    public void setInventoryScreenScene(Scene s){
+        inventoryScreenScene = s;
+    }
+
+    public void setInventoryScreen(InventoryScreen is){
+        InventoryScreen = is;
+    }
+
+    public FoodBank getCurrentFoodBank(){
+        return currentFoodBank;
     }
 }

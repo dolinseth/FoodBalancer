@@ -80,7 +80,7 @@ public class FoodItem implements Serializable, Comparable{
      * helper function to convert the food types that apply to this FoodItem to a space separated string for JSON exporting
      * @return - the space separated string containing the food types
      */
-    private String getFoodTypesString(){
+    protected String getFoodTypesString(){
         String ret = "";
         for(int i = 0; i < foodTypes.size(); i++){
             ret += foodTypes.get(i).toString();
