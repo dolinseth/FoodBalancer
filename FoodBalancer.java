@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -109,5 +111,48 @@ public class FoodBalancer extends Application{
 
         //must be final call in the function, tells JavaFX to start the app
         stage.show();
+    }
+
+    /**
+     * constructs a list of FoodTransportSuggestions based on the surpluses and deficits at food banks in the list
+     * @param fbl - the food bank list to construct the suggestions for
+     * @return - an ArrayList of FoodTransportSuggestions
+     */
+    public ArrayList<FoodTransportSuggestion> getFoodTransportSuggestions(FoodBankList fbl){
+        ArrayList<FoodTransportSuggestion> suggestions = new ArrayList<FoodTransportSuggestion>();
+        FoodBankList surplusBanks = new FoodBankList();
+        FoodBankList deficitBanks = new FoodBankList();
+        fbl.getFoodBanks().forEach(fb -> {
+            if(fb.calculateSurplusCalories() > 0){
+                surplusBanks.addFoodBank(fb);
+            }
+            else{
+                deficitBanks.addFoodBank(fb);
+            }
+        });
+
+        surplusBanks.getFoodBanks().forEach(fb -> {
+            FoodBank nearest = fb.getNearestFoodBank(deficitBanks);
+            int surplus = fb.calculateSurplusCalories();
+            int deficit = nearest.calculateSurplusCalories();
+            while(surplus > 0 && deficit < 0){
+                surplus = fb.calculateSurplusCalories();
+                deficit = nearest.calculateSurplusCalories();
+                FoodTransportSuggestion fts = new FoodTransportSuggestion(fb, nearest);
+                FoodItem mostAbundantAtSource = fb.getMostAbundantItem();
+                int mostAbundantCalories = mostAbundantAtSource.getQuantity()*mostAbundantAtSource.getTotalCalories();
+                if(mostAbundantCalories > surplus || mostAbundantCalories > (deficit * -1)){
+                    int quantityAvailableInSurplus = (int)Math.floor(surplus / mostAbundantAtSource.getTotalCalories());
+                    int quantityRequiredForDeficit = (int)Math.floor((deficit * -1) / mostAbundantAtSource.getTotalCalories());
+                    mostAbundantAtSource.setQuantity(Math.min(quantityAvailableInSurplus, quantityRequiredForDeficit));
+                    surplus -= mostAbundantAtSource.getTotalCalories() * mostAbundantAtSource.getQuantity();
+                    deficit += mostAbundantAtSource.getTotalCalories() * mostAbundantAtSource.getQuantity();
+                }
+                fts.addFoodItem(mostAbundantAtSource);
+                suggestions.add(fts);
+                fbl.applyFoodTransportSuggestion(fts);
+            }
+        });
+        return suggestions;
     }
 }

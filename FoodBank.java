@@ -1,8 +1,11 @@
+import java.util.ArrayList;
+
 import org.json.JSONObject;
 
 public class FoodBank implements Serializable, Comparable<FoodBank> {
     protected String name;
     protected FoodList foodList = new FoodList();
+    protected FoodRequirements foodRequirements;
     protected Coordinate location;
 
     /**
@@ -30,6 +33,7 @@ public class FoodBank implements Serializable, Comparable<FoodBank> {
         name = root.getString("Name");
         location = new Coordinate(root.getJSONObject("Location"));
         foodList = new FoodList(root.getJSONObject("FoodList"));
+        foodRequirements = new FoodRequirements(root.getInt("TotalPeopleInArea"));
     }
 
     /**
@@ -41,8 +45,52 @@ public class FoodBank implements Serializable, Comparable<FoodBank> {
         root.put("Name", name);
         root.put("Location", location.toJSON());
         root.put("FoodList", foodList.toJSON());
+        root.put("TotalPeopleInArea", foodRequirements.getTotalPeopleInArea());
 
         return root;
+    }
+
+    /**
+     * calculates the surplus of calories at the given food bank (negative if there is a deficit)
+     * assumes that the food bank needs to support all people in the area living below the poverty line for one week
+     * @return - the calorie surplus (negative if it's a deficit)
+     */
+    public int calculateSurplusCalories(){
+        if(foodRequirements != null){
+            int surplusCalories = foodList.getTotalCalories() - foodRequirements.getTotalPeopleInArea()*2000*7;
+            return surplusCalories;
+        }
+        else{
+            return 0;
+        }
+    }
+
+    public FoodBank getNearestFoodBank(FoodBankList fbl){
+        double minDist = Double.MAX_VALUE;
+        FoodBank nearest = null;
+        for(FoodBank fb : fbl.getFoodBanks()){
+            double distance = fb.getLocation().getDistanceTo(this.getLocation());
+            if(distance < minDist){
+                minDist = distance;
+                nearest = fb;
+            }
+        }
+
+        return nearest;
+    }
+
+    public FoodItem getMostAbundantItem(){
+        ArrayList<FoodItem> foods = foodList.getFoodItems();
+        int maxQuantity = -1;
+        FoodItem mostAbundant = null;
+        for(FoodItem fi : foods){
+            if(fi.getQuantity() > maxQuantity){
+                maxQuantity = fi.getQuantity();
+                mostAbundant = fi;
+            }
+        }
+
+        return mostAbundant;
     }
 
     /**
@@ -84,5 +132,9 @@ public class FoodBank implements Serializable, Comparable<FoodBank> {
 
     public void addFoodItem(FoodItem fi){
         foodList.addFoodItem(fi);
+    }
+
+    public void setFoodRequirements(int totalPeopleInArea){
+        foodRequirements = new FoodRequirements(totalPeopleInArea);
     }
 }

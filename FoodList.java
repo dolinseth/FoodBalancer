@@ -30,7 +30,8 @@ public class FoodList implements Serializable {
      */
     public void addFoodItem(FoodItem fi){
         if(foodItems.contains(fi)){
-            System.out.println("Error: Tried to add a food item to this list that already exists. To update the quantity of the food item please use updateQuantity()");
+            FoodItem oldfi = foodItems.get(foodItems.indexOf(fi));
+            oldfi.updateQuantity(fi.getQuantity());
         }
         else{
             foodItems.add(fi);
@@ -96,7 +97,6 @@ public class FoodList implements Serializable {
 
         return foods;
     }
-
 
     /*
     GETTERS AND SETTERS

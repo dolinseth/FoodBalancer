@@ -73,6 +73,18 @@ public class FoodBankList implements Serializable{
         }
     }
 
+    /**
+     * applies a food transport suggestion by removing the specified items from the source and adding them to the destination
+     * @param fts - the FoodTransportSuggestion to apply
+     */
+    public void applyFoodTransportSuggestion(FoodTransportSuggestion fts){
+        fts.getFoods().getFoodItems().forEach(fi -> {
+            fts.destination.addFoodItem(fi);
+            fi.setQuantity(fi.getQuantity() * -1);
+            fts.source.addFoodItem(fi);
+        });
+    }
+
     /*
     GETTERS AND SETTERS
     */
