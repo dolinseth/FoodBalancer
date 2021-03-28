@@ -78,7 +78,7 @@ public class FoodBalancer extends Application{
         Parent whoAmIScreenRoot = null;
         FXMLLoader whoAmIScreenLoader = new FXMLLoader(this.getClass().getResource("fxml/whoAreYouScene.fxml"));
         WhoAmIScreen whoAmIScreen = null;
-        Parent InventoryScreenRoot = null;
+        Parent inventoryScreenRoot = null;
         FXMLLoader inventoryScreenLoader = new FXMLLoader(this.getClass().getResource("fxml/inventoryScene.fxml"));
         InventoryScreen inventoryScreen = null;
 
