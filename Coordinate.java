@@ -69,15 +69,6 @@ public class Coordinate implements Serializable{
     }
 
     /**
-     * helper function to convert radians to degrees
-     * @param radians - the quantity of radians to convert to degrees
-     * @return - the input value converted to degrees, expressed as a double
-     */
-    private double radiansToDegrees(double radians){
-        return radians * (180.0 / Math.PI);
-    }
-
-    /**
      * helper function to convert degrees to radians
      * @param degrees - the quantity of degrees to convert to radians
      * @return - the input value converted to radians, expressed as a double

@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-public class FoodItem implements Serializable, Comparable{
+public class FoodItem implements Serializable, Comparable<FoodItem>{
     protected enum FoodType {FATS_OILS_SWEETS, DAIRY, MEAT, VEGETABLE, FRUIT, GRAIN, NONE};
     protected ArrayList<FoodType> foodTypes = new ArrayList<FoodType>();
     protected String name = "";
@@ -147,25 +145,19 @@ public class FoodItem implements Serializable, Comparable{
      * @return - boolean representing whether the provided FoodItem is equivalent to this FoodItem
      */
     @Override
-    public int compareTo(Object obj){
-        if(obj instanceof FoodItem){
-            FoodItem fi = (FoodItem)obj;
-            boolean equivalent = true;
-            if(fi.name.compareTo(name) != 0){
-                equivalent = false;
-            }
-            if(fi.caloriesPerServing != caloriesPerServing){
-                equivalent = false;
-            }
-            if(fi.servingsPerContainer != servingsPerContainer){
-                equivalent = false;
-            }
+    public int compareTo(FoodItem fi){
+        boolean equivalent = true;
+        if(fi.name.compareTo(name) != 0){
+            equivalent = false;
+        }
+        if(fi.caloriesPerServing != caloriesPerServing){
+            equivalent = false;
+        }
+        if(fi.servingsPerContainer != servingsPerContainer){
+            equivalent = false;
+        }
 
-            return (equivalent) ? (0) : (name.compareTo(fi.getName()));
-        }
-        else{
-            return -1;
-        }
+        return (equivalent) ? (0) : (name.compareTo(fi.getName()));
     }
 
     /**

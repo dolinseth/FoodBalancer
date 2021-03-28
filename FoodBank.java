@@ -1,6 +1,6 @@
 import org.json.JSONObject;
 
-public class FoodBank implements Serializable, Comparable {
+public class FoodBank implements Serializable, Comparable<FoodBank> {
     protected String name;
     protected FoodList foodList = new FoodList();
     protected Coordinate location;
@@ -49,18 +49,12 @@ public class FoodBank implements Serializable, Comparable {
      * overridden compareTo method, to allow List.contains() to work properly
      */
     @Override
-    public int compareTo(Object obj){
-        if(obj instanceof FoodBank){
-            FoodBank fb = (FoodBank)obj;
-            if(fb.getName().compareTo(name) == 0){
-                return 0;
-            }
-            else{
-                return 1;
-            }
+    public int compareTo(FoodBank fb){
+        if(fb.getName().compareTo(name) == 0){
+            return 0;
         }
         else{
-            return -1;
+            return 1;
         }
     }
 

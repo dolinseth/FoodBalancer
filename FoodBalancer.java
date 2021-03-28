@@ -1,15 +1,11 @@
 import java.io.IOException;
-import java.util.ArrayList;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class FoodBalancer extends Application{
-    //stage on which the application will be launched
-    private Stage stage;
     //app controller reference for easy access within this class
     private AppController appController;
 
@@ -64,7 +60,6 @@ public class FoodBalancer extends Application{
      */
     public void start(Stage stage){
         //set the class fields for the stage and app controller
-        this.stage = stage;
         this.appController = AppController.getInstance();
         appController.setStage(stage);
         //load FXML
@@ -99,7 +94,7 @@ public class FoodBalancer extends Application{
 
         //create scenes for each screen
         Scene whoAmIScreenScene = new Scene(whoAmIScreenRoot);
-        Scene inventoryScreenScene = new Scene(InventoryScreenRoot);
+        Scene inventoryScreenScene = new Scene(inventoryScreenRoot);
 
 
         //give AppController references to scenes and objects
